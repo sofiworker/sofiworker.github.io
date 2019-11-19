@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Android 简易拍照</title>
+    <link href="undefinedAndroid/Android-%E7%AE%80%E6%98%93%E6%8B%8D%E7%85%A7/"/>
+    <url>Android/Android-%E7%AE%80%E6%98%93%E6%8B%8D%E7%85%A7/</url>
+    
+    <content type="html"><![CDATA[<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><p><a href="https://developer.android.google.cn/training/camera/photobasics" target="_blank" rel="noopener">https://developer.android.google.cn/training/camera/photobasics</a></p><p><a href="https://juejin.im/entry/59c9ae4ff265da0658153544" target="_blank" rel="noopener">https://juejin.im/entry/59c9ae4ff265da0658153544</a></p><hr><h4 id="一、基本步骤："><a href="#一、基本步骤：" class="headerlink" title="一、基本步骤："></a>一、基本步骤：</h4><ol><li>检查权限</li><li>检查是否有相机资源</li><li>通过FileProvide创建共享文件</li><li>启动相机</li><li>处理返回的数据</li></ol><hr><h4 id="二、代码"><a href="#二、代码" class="headerlink" title="二、代码"></a>二、代码</h4><h6 id="1、获取完整照片"><a href="#1、获取完整照片" class="headerlink" title="1、获取完整照片"></a>1、获取完整照片</h6><pre><code class="java">private static final int REQUEST_TAKE_PHOTO = 1;private String currentPhotoPath;if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    /**     *Notice that the startActivityForResult() method is protected by a condition that          *calls resolveActivity(), which returns the first activity component that can handle        *the intent. Performing this check is important because if you call                      *startActivityForResult() using an intent that no app can handle, your app will          *crash. So as long as the result is not null, it&#39;s safe to use the intent.     *粗略理解为检测是否有相机应用     **/    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {        File photoFile = null;        try {            //使用自定义函数创建文件            photoFile = createImageFile();        } catch (IOException ex) {            Log.d(TAG, &quot;文件创建失败&quot;);        }        if (photoFile != null) {            //创建共享文件，由于Android7.0行为变更所以使用FileProvide共享文件，           //FileProvide是ContentProvide的子类，所以需要在Manifest中注册           /**             * &lt;provider             *    android:name=&quot;android.support.v4.content.FileProvider&quot;             *    android:authorities=&quot;这里填写自己的包名要和getUriForFile()函数中传的一致&quot;             *    android:exported=&quot;false&quot;             *    android:grantUriPermissions=&quot;true&quot;&gt;             *    &lt;meta-data             *       android:name=&quot;android.support.FILE_PROVIDER_PATHS&quot;             *        &lt;!--需要在res文件夹下创建xml文件夹中的file_paths文件--&gt;             *       android:resource=&quot;@xml/file_paths&quot;&gt;             *    &lt;/meta-data&gt;             * &lt;/provider&gt;             *             *file_paths文件内容             *&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;             *&lt;paths xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;             *&lt;external-path name=&quot;my_images&quot;                                                          *path=&quot;Android/data/这里填写自己的包名/files/Pictures&quot; /&gt;             *&lt;/paths&gt;             **/            Uri photoURI;            if (Build.VERSION.SDK_INT &gt;= 24){                photoURI = FileProvider.getUriForFile(this,                                                     getPackageName(),                                                     photoFile);            }else {                photoURI = Uri.fromFile(photoFile);            }            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);        }    }}/** *创建文件函数 **/private File createImageFile() throws IOException {        String timeStamp = new SimpleDateFormat(&quot;yyyyMMdd_HHmmss&quot;, Locale.CHINA).format(new Date());        String imageFileName = &quot;IMG_&quot; + timeStamp + &quot;_&quot;;        //获取外部储存路径        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);        File image = File.createTempFile(                imageFileName,                &quot;.jpg&quot;,                storageDir        );        //保存当前文件的路径        currentPhotoPath = image.getAbsolutePath();        return image;    }@Overrideprotected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {    super.onActivityResult(requestCode, resultCode, data);    if (requestCode == REQUEST_TAKE_PHOTO &amp;&amp; resultCode == RESULT_OK){        //处理图片信息处理    }}</code></pre><blockquote><p><strong>* 附Android7.0行为变更好文：*</strong><a href="https://blog.csdn.net/lmj623565791/article/details/72859156" target="_blank" rel="noopener">https://blog.csdn.net/lmj623565791/article/details/72859156</a></p></blockquote><h6 id="2、获取缩略图"><a href="#2、获取缩略图" class="headerlink" title="2、获取缩略图"></a>2、获取缩略图</h6><blockquote><p>调用系统相机拍照时，如果不传路径，图片默认返回缩略图。</p></blockquote><pre><code class="java">static final int REQUEST_IMAGE_CAPTURE = 1;private void dispatchTakePictureIntent() {    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);    }}@Overrideprotected void onActivityResult(int requestCode, int resultCode, Intent data) {    if (requestCode == REQUEST_IMAGE_CAPTURE &amp;&amp; resultCode == RESULT_OK) {        Bundle extras = data.getExtras();        Bitmap imageBitmap = (Bitmap) extras.get(&quot;data&quot;);        //继续处理    }}</code></pre>]]></content>
+    
+    
+    <categories>
+      
+      <category>Android</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World!</title>
     <link href="undefined%E6%97%A5%E5%B8%B8/Hello-World/"/>
     <url>%E6%97%A5%E5%B8%B8/Hello-World/</url>

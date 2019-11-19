@@ -130,6 +130,58 @@
     
     
     <div class="col-12 col-md-8 m-auto">
+      <a href="/Android/Android-%E7%AE%80%E6%98%93%E6%8B%8D%E7%85%A7/">
+        <p class="h4 index-header">Android 简易拍照</p>
+        
+        
+          
+        
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">参考：https://developer.android.google.cn/training/camera/photobasics
+https://juejin.im/entry/59c9ae4ff265da0658153544
+
+一、基本步骤：
+检查权限
+检查是否有相机资源
+通过FileProvide创建共享文件
+启动相机
+处理返回的数据
+
+
+二、代码1、获取完整照片private static final int REQUEST_TAKE_PHOTO = 1;
+private String currentPhotoPath;
+
+if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    /**
+     *Notice that the startActivity</div>
+        </div>
+      </a>
+
+      <div>
+        
+          <i class="iconfont icon-riqi2"></i>&nbsp;2019-11-19&nbsp;&nbsp;
+        
+        
+          <i class="iconfont icon-inbox"></i>
+          
+            <a href="/categories/Android">Android</a>&nbsp;
+          &nbsp;
+        
+        
+          <i class="iconfont icon-tag"></i>
+          
+            <a href="/tags/Android">Android</a>&nbsp;
+          
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 mx-auto">
+    
+    
+    <div class="col-12 col-md-8 m-auto">
       <a href="/%E6%97%A5%E5%B8%B8/Hello-World/">
         <p class="h4 index-header">Hello World!</p>
         
