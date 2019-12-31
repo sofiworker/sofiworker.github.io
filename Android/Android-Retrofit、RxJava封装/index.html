@@ -193,9 +193,9 @@
     void detachView();
 }</code></pre>
 <h5 id="2、添加依赖"><a href="#2、添加依赖" class="headerlink" title="2、添加依赖"></a>2、添加依赖</h5><p>说起MVP基础的搭建就一定少不了Rx系列与Retrofit了，截至2019年12月22日，Retrofit2的最新版本为 <code>2.7.0</code>，RxJava2的最新版本为<code>2.2.15</code>，RxAndroid的版本为<code>2.1.1</code>，整个项目主要添加的依赖如下：</p>
-<p><img src="1577114266041.png" srcset="undefined" alt="1577114266041"></p>
+<p><img src="1577114266041.png" alt="1577114266041"></p>
 <p>有很多博客说还要添加OkHttp3的依赖，由于Retrofit2本就是根据OkHttp3来搭建的，所以可以看到依赖里其实有OkHttp3的依赖的，不必再进行二次添加了。</p>
-<p><img src="1577025183289.png" srcset="undefined" alt="okhttp3"></p>
+<p><img src="1577025183289.png" alt="okhttp3"></p>
 <h4 id="四、编写BaseActivity与BaseFragment"><a href="#四、编写BaseActivity与BaseFragment" class="headerlink" title="四、编写BaseActivity与BaseFragment"></a>四、编写BaseActivity与BaseFragment</h4><pre><code class="java">public abstract class BaseActivity&lt;T extends IBasePresenter&gt; extends AppCompatActivity implements IBaseView {
 
     protected T mPresenter;
@@ -261,7 +261,7 @@
     //get和set方法
 }</code></pre>
 <p>通过示例可以看出首页的一级bean为下图所示，所以再定义一个PageBean</p>
-<p><img src="1577026666268.png" srcset="undefined" alt="返回的json"></p>
+<p><img src="1577026666268.png" alt="返回的json"></p>
 <pre><code class="java">public class PageBean {
 
     private int curPage;
@@ -369,7 +369,7 @@
 }</code></pre>
 <p>这里选择继承了<code>ResourceObserver</code>类，进行封装。为什么在构造方法中传入一个<code>IBaseView</code>，主要在于每次获取json后，都能通过code判断是否成功、失败、错误等，所以直接将这些放入<code>Observer</code>中，减少冗余代码。</p>
 <h4 id="七、编写BasePresenter层"><a href="#七、编写BasePresenter层" class="headerlink" title="七、编写BasePresenter层"></a>七、编写BasePresenter层</h4><p>有了上面的基础，就可以来编写最重要的P层了，在P层中使用RxJava进行线程切换以及与Retrofit进行网络请求，最重要的就是对网络请求与页面回调之间的控制，有著名的 <a href="https://github.com/trello/RxLifecycle" target="_blank" rel="noopener">RxLifecycle</a> 能对其进行管理。这里选择自己手动管理。通过<code>CompositeDisposable</code>类的说明可以看出，这个类是为了管理资源的容器，所以可以在<code>BasePresenter</code>的子类中使用<code>subscribeWith()</code>订阅观察对象返回一个观察者加入到<code>CompositeDisposable</code>容器中，页面销毁时使用该对象销毁正在进行的请求。</p>
-<p><img src="1577168814134.png" srcset="undefined" alt="1577168814134"></p>
+<p><img src="1577168814134.png" alt="1577168814134"></p>
 <pre><code class="java">public abstract class BasePresenter&lt;T extends IBaseView&gt; implements IBasePresenter&lt;T&gt; {
 
     protected T mView;
@@ -608,8 +608,6 @@
 <script src="/lib/mdbootstrap/js/mdb.min.js" ></script>
 <script src="/js/main.js" ></script>
 
-
-  <script src="/js/lazyload.js" ></script>
 
 
 
