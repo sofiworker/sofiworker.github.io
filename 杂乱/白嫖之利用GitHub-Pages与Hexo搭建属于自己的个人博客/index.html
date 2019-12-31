@@ -163,14 +163,14 @@
           <div class="markdown-body">
             <h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>为什么会写这样一篇文章呢？Hexo 的官方文档已经很棒了；网上对于 Hexo 的文章也已经有很多了，但是很多文章都是基于 <code>2.*</code> 的版本加上有些文章在自定义域名有错，所以写了这篇文章算是对官网文档的小部分补充吧。</p>
 <h4 id="二、环境依赖"><a href="#二、环境依赖" class="headerlink" title="二、环境依赖"></a>二、环境依赖</h4><p>Hexo 依赖Node.js 与 Git 所以电脑的先安装这两个软件，下图是官网的中文文档提示。</p>
-<p><img src="%5C1577769998203.png" srcset="undefined" alt="1577769998203"></p>
+<p><img src="1577769998203.png" srcset="undefined" alt="1577769998203"></p>
 <h4 id="三、安装Hexo"><a href="#三、安装Hexo" class="headerlink" title="三、安装Hexo"></a>三、安装Hexo</h4><p>这里可以直接参考官网的说明，详情点 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">这儿</a></p>
-<p><img src="%5C1577770156842.png" srcset="undefined" alt="1577770156842"></p>
+<p><img src="1577770156842.png" srcset="undefined" alt="1577770156842"></p>
 <blockquote>
 <p>注意：如果下载缓慢请修改 <code>npm</code> 镜像为淘宝镜像。</p>
 </blockquote>
 <p>到这里其实只是把 Hexo 下载到本地了，接着进行下一步：</p>
-<p><img src="%5C1577770480145.png" srcset="undefined" alt="1577770480145"></p>
+<p><img src="1577770480145.png" srcset="undefined" alt="1577770480145"></p>
 <p>这里就将 Hexo 安装完毕了，官网给了一个安装完成后的文件夹目录，当时看到这里作为一个后端开发很懵逼，为什么自己的文件夹里会多出一些 <code>*.json以及git的忽略文件</code> 这些其实都无关紧要是 git 与 npm 生成的</p>
 <pre><code class="无">.
 ├── _config.yml        ---&gt; 这个是Hexo的配置文件
@@ -182,14 +182,14 @@
 └── themes            ---&gt; 主题文件</code></pre>
 <h4 id="四、创建Github-Pages仓库"><a href="#四、创建Github-Pages仓库" class="headerlink" title="四、创建Github Pages仓库"></a>四、创建Github Pages仓库</h4><p>如果英语好直接看官方文档，请点 <a href="https://pages.github.com/" target="_blank" rel="noopener">这儿</a></p>
 <p>首先创建一个和你 Github 账号同名的仓库，例如用户名为 <code>sofiworker</code> 那么仓库的名称为 <code>sofiworker.github.io</code> </p>
-<p><img src="%5C1577772153148.png" srcset="undefined" alt="1577772153148"></p>
+<p><img src="1577772153148.png" srcset="undefined" alt="1577772153148"></p>
 <p>注意这里应该使仓库为 <code>public</code> 否者别人不可见，只能通过分享才可见</p>
 <blockquote>
 <p>Choose to make the repository either public or private. Public repositories are visible to the public, while private repositories are only accessible to you, and people you share them with. For more information, see “<a href="https://help.github.com/en/articles/setting-repository-visibility" target="_blank" rel="noopener">Setting repository visibility</a>.”</p>
 </blockquote>
 <p><img src="%5Ccreate-repository-public-private.png" srcset="undefined" alt="create-repository-public-private"></p>
 <h4 id="五、配置Hexo并上传至仓库"><a href="#五、配置Hexo并上传至仓库" class="headerlink" title="五、配置Hexo并上传至仓库"></a>五、配置Hexo并上传至仓库</h4><p>在 Hexo 的 <code>_config.yml</code> 文件下配置下图信息，请将 <code>sofiworker</code> 换为自己的用户名</p>
-<p><img src="%5C1577773190967.png" srcset="undefined" alt="1577773190967"></p>
+<p><img src="1577773190967.png" srcset="undefined" alt="1577773190967"></p>
 <p>然后使用 <code>hexo clean</code> 、<code>hexo g</code> 、<code>hexo d</code> 就能直接将 Hexo 部署到 GitHub Pages 上了，稍后就能通过 <code>http://用户名.github.io/</code> 访问到自己的博客了。</p>
 <h4 id="六、修改主题"><a href="#六、修改主题" class="headerlink" title="六、修改主题"></a>六、修改主题</h4><p>Hexo 默认的主题是 <code>landscape</code>。直接在 <code>themes</code> 文件夹下使用git指令克隆自己想要的主题仓库。</p>
 <p><strong>注意不同的主题配配置方法有所不同，这里以fluid主题举例</strong></p>
@@ -197,24 +197,24 @@
 <p>详情可以参阅 fluid 的官方 <a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#获取最新版本" target="_blank" rel="noopener">文档</a></p>
 </blockquote>
 <p>首先我们将克隆下来的文件夹名称改为 <code>fluid</code>，然后在 <code>Hexo</code> 的配置文件中修改主题为下图</p>
-<p><img src="%5C1577774967467.png" srcset="undefined" alt="1577774967467"></p>
+<p><img src="1577774967467.png" srcset="undefined" alt="1577774967467"></p>
 <p>并且按照 fluid 的文档关闭 Hexo 自带的代码高亮，到这里其实已经将 Hexo 的主题修改为 fluid 了，可以使用 <code>hexo clean</code> 、<code>hexo g</code> 、 <code>hexo server</code>  在本地部署，通过 <code>http://localhost:4000/</code> 查看效果，最后依旧通过 <code>hexo d</code> 部署到 GitHub 上。</p>
 <h4 id="七、启用文章评论功能"><a href="#七、启用文章评论功能" class="headerlink" title="七、启用文章评论功能"></a>七、启用文章评论功能</h4><p>文章的评论功能主要依赖 Hexo 插件，主要有：gitalk、disqus等等。因为有的主题会整合部分插件，所以使用不同的主题，开启评论功能的方法有所不同，这里依然以 fluid 主题与 gitalk 举例。首先依旧使用 npm 下载 gitalk 包，然后前往 GitHub 创建一个 OAuth App，如下图</p>
-<p><img src="%5C1577778840239.png" srcset="undefined" alt="1577778840239"></p>
+<p><img src="1577778840239.png" srcset="undefined" alt="1577778840239"></p>
 <p>Homepage URL 填写网站的地址，这里好像只能填写为图中那样，直接填写自定义的域名好像不行，还望大佬指点。图中的地址是启用 HTTPS 的，如何启用见文章第九步。然后打开 fluid 文件夹的配置文件启用评论功能，然后进行下一步配置</p>
-<p><img src="%5C1577779517434.png" srcset="undefined" alt="1577779517434"></p>
-<p><img src="%5C1577780162985.png" srcset="undefined" alt="1577780162985"></p>
+<p><img src="1577779517434.png" srcset="undefined" alt="1577779517434"></p>
+<p><img src="1577780162985.png" srcset="undefined" alt="1577780162985"></p>
 <p>gitalk 利用的是 GitHub 仓库的 Issues 作为评论区的，所以每次需要管理员手动初始化。如果你的主题没有整合评论，可以参考这个插件 <a href="https://github.com/snowdreams1006/hexo-plugin-gitalk" target="_blank" rel="noopener">hexo-plugin-gitalk</a></p>
 <h4 id="八、图文混排"><a href="#八、图文混排" class="headerlink" title="八、图文混排"></a>八、图文混排</h4><p>Hexo 实现图文混排的方式网上有很多：利用七牛云等。这里来个直接点的，直接将图片一起推送到仓库中，不需要额外搞其他的。首先我们在 Hexo 的配置文件中进行配置，如下图</p>
-<p><img src="%5C1577777347489.png" srcset="undefined" alt="1577777347489"></p>
-<p>这里我选择了使用 <code>文章资源文件夹</code> 在文章中引用图片需要修改为 <code>![图片名字](\图片名字)</code> ，例如我想引用一个名为 <code>test.jpg</code> 的图片就需要这样 <code>![test](\test.jpg)</code> 。原因在于 Hexo 推送时会将图片与文章一起放在一个文件夹中推送到仓库中，所以图片与文章其实在同一个目录下。由于需要使用相对路径，就造成了使用 Typora 写文章没有图片预览，希望有大佬指导一下😂。</p>
+<p><img src="1577777347489.png" srcset="undefined" alt="1577777347489"></p>
+<p>这里我选择了使用 <code>文章资源文件夹</code> 在文章中引用图片需要修改为 <code>![图片名字](图片名字)</code> ，例如我想引用一个名为 <code>test.jpg</code> 的图片就需要这样 <code>![test](test.jpg)</code> 。原因在于 Hexo 推送时会将图片与文章一起放在一个文件夹中推送到仓库中，所以图片与文章其实在同一个目录下。由于需要使用相对路径，就造成了使用 Typora 写文章没有图片预览，希望有大佬指导一下😂。</p>
 <h4 id="九、自定义域名及启用HTTPS"><a href="#九、自定义域名及启用HTTPS" class="headerlink" title="九、自定义域名及启用HTTPS"></a>九、自定义域名及启用HTTPS</h4><p>如果我们已经有了一个域名，直接进入服务商的域名解析设置，这里以阿里云举例。首先我们进入解析列表添加一个 <code>CNAME</code> 记录，主机记录填写为 <code>@</code> 或者其他自己想要的，记录值改为 <code>用户名.github.io</code> ，详情见下图</p>
-<p><img src="%5C1577775979980.png" srcset="undefined" alt="1577775979980"></p>
+<p><img src="1577775979980.png" srcset="undefined" alt="1577775979980"></p>
 <p>然后进入 Hexo 的 <code>source</code> 文件夹下添加一个 <code>CNAME</code> 文件，<strong>不要任何后缀</strong> ，填入自己的网址，见下图。这里其实是 Github Pages 的要求，当初一直以为是 Hexo 的要求😂</p>
-<p><img src="%5C1577776545022.png" srcset="undefined" alt="1577776545022"></p>
-<p><img src="%5C1577776647715.png" srcset="undefined" alt="1577776647715"></p>
+<p><img src="1577776545022.png" srcset="undefined" alt="1577776545022"></p>
+<p><img src="1577776647715.png" srcset="undefined" alt="1577776647715"></p>
 <p>然后进入 GitHub 的仓库设置页面添加自己的域名，如果 GitHub 能成功解析，会出现红框里的解析结果，勾选上 <code>Enforce HTTPS</code> 会启用 HTTPS。</p>
-<p><img src="%5C1577776164178.png" srcset="undefined" alt="1577776164178"></p>
+<p><img src="1577776164178.png" srcset="undefined" alt="1577776164178"></p>
 <p>记得将 Hexo 部署到 GitHub 上，就能通过自己的域名访问啦！</p>
 <h4 id="十、总结"><a href="#十、总结" class="headerlink" title="十、总结"></a>十、总结</h4><p>白嫖之旅到此结束了，Hexo 作为一个静态博客，自己感觉还是部署还是十分简单、界面优美，关键是全套的白嫖怎么不香呐！最后欢迎光临 <a href="https://sofiworker.me/">sofiworker的个人博客</a></p>
 <h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo中文文档</a></p>
